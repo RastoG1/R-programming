@@ -26,7 +26,7 @@ summary(df)
 any(is.na(df))
 
 numeric_cols = sapply(df, is.numeric)
-cor_data = cor(df[,numeric_cols])
+cor_data <- cor(df[,numeric_cols])
 cor_data
 
 help(corrplot)
@@ -35,14 +35,14 @@ corrplot(cor_data, method = 'color', order = 'alphabet')
 corrplot(cor_data, method = 'number')
 #more options for corrplot -> https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html
 
-pl = ggplot(df,aes(x=G3)) + geom_histogram(bins=20,alpha=0.5,fill='blue') + theme_minimal()
+pl <- ggplot(df,aes(x=G3)) + geom_histogram(bins=20,alpha=0.5,fill='blue') + theme_minimal()
 print(ggplotly(pl))
 
 #or
 pl
 
 #or
-h = hist(df$G3, main = 'data')
+h <- hist(df$G3, main = 'data')
 h
 xfit<-seq(min(df$G3),max(df$G3),length=20)
 yfit<-dnorm(xfit,mean=mean(df$G3),sd=sd(df$G3))
@@ -59,20 +59,20 @@ abline(v = mean(x = df$G3), col = 'red')
 #Train & Test Data
 set.seed(101)
 #split up data randomly
-sample = sample.split(df$age, SplitRatio = 0.70)
+sample <- sample.split(df$age, SplitRatio = 0.70)
 # Training Data
-train = subset(df, sample == TRUE)
+train <- subset(df, sample == TRUE)
 # Testing Data
-test = subset(df, sample == FALSE)
+test <- subset(df, sample == FALSE)
 
 model = lm(G3 ~ ., train)
 summary(model)
 
 #Residuals
-res = residuals(model)
+res <- residuals(model)
 res <- as.data.frame(res)
 head(res)
-pl2 = ggplot(res,aes(res)) +  geom_histogram(fill='blue',alpha=0.5)
+pl2 <- ggplot(res,aes(res)) +  geom_histogram(fill='blue',alpha=0.5)
 pl2
 print(ggplotly(pl2))
 
