@@ -22,29 +22,29 @@ var(standardized.Caravan[,1])
 var(standardized.Caravan[,2])
 
 # First 1000 rows for test set
-test_index = 1:1000
-test_data = standardized.Caravan[test_index,]
-test_purchase = purchase[test_index]
+test_index <- 1:1000
+test_data <- standardized.Caravan[test_index,]
+test_purchase <- purchase[test_index]
 
 # Rest of data for training
-train_data = standardized_Caravan[-test_index,]
-train_purchase = purchase[-test_index]
+train_data <- standardized_Caravan[-test_index,]
+train_purchase <- purchase[-test_index]
 
 library(class)
 
 set.seed(101)
-predicted_purchase = knn(train_data,test_data,train_purchase,k=1)
+predicted_purchase <- knn(train_data,test_data,train_purchase,k=1)
 head(predicted_purchase)
 
 mean(test_purchase != predicted_purchase)
 
-predicted_purchase = NULL
-error_rate = NULL
+predicted_purchase <- NULL
+error_rate <- NULL
 
 for(i in 1:20){
   set.seed(101)
-  predicted_purchase = knn(train_data,test_data,train_purchase,k=i)
-  error_rate[i] = mean(test_purchase != predicted_purchase)
+  predicted_purchase <- knn(train_data,test_data,train_purchase,k=i)
+  error_rate[i] <- mean(test_purchase != predicted_purchase)
 }
 
 print(error_rate)
