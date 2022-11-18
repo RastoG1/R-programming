@@ -3,7 +3,7 @@
 library(ISLR)
 
 head(College)
-df = College
+df <- College
 
 library(ggplot2)
 ggplot(df, aes(Room.Board, Grad.Rate)) + geom_point(aes(color = Private), size = 3, alpha = 0.5)
@@ -22,14 +22,14 @@ df['Cazenovia College', 'Grad.Rate'] = 100
 library(caTools)
 set.seed(101)
 
-sample = sample.split(df$Private, SplitRatio = 0.7)
-train = subset(df, sample == T)
-test = subset(df, sample == F)
+sample <- sample.split(df$Private, SplitRatio = 0.7)
+train <- subset(df, sample == T)
+test <- subset(df, sample == F)
 
 library(rpart)
-tree = rpart(Private ~ ., method = 'class', data = train)
+tree <- rpart(Private ~ ., method = 'class', data = train)
 summary(tree)
-tree_p = predict(tree, test)
+tree_p <- predict(tree, test)
 
 tree_p = as.data.frame(tree_p)
 
@@ -41,7 +41,7 @@ j = function(x){
   }
 }
 
-tree_p$Private = sapply(tree_p$Yes, j)
+tree_p$Private <- sapply(tree_p$Yes, j)
 print(head(tree_p))
 
 table(tree_p$Private, test$Private)
@@ -54,8 +54,8 @@ prp(tree)
 #random forest
 install.packages('randomForest')
 library(randomForest)
-rf_model = randomForest(Private ~.,data = train, importance = TRUE)
+rf_model <- randomForest(Private ~.,data = train, importance = TRUE)
 rf_model$confusion
-rf_p = predict(rf_model, test)
+rf_p <- predict(rf_model, test)
 table(rf_p, test$Private)
 
