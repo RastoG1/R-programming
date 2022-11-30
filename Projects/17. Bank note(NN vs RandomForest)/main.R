@@ -1,19 +1,10 @@
 
 
 df <- read.csv('bank_note_data.csv')
+df <- as.data.frame(df)
 head(df)
 str(df)
 summary(df)
-
-
-df$Class <- as.factor(df$Class)
-
-library(ggplot2)
-ggplot(df, aes(Image.Var)) + geom_histogram(aes(fill = Class), color = 'black', bins = 30)
-ggplot(df, aes(Image.Var, Image.Skew)) + geom_point(aes(color = Class)) + theme_bw()
-
-df$Class <- as.integer(df$Class)
-df <- as.data.frame(df)
 
 #split data
 library(caTools)
