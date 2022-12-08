@@ -48,8 +48,8 @@ PCi$id <- ID
 ggplot(PCi,aes(x=PC1,y=PC2,col=pohlaví))+
   geom_point()+
   scale_color_manual(values = c("green","orange"), na.value = "red") + 
-  geom_text(aes(label = id), color = "gray20", 
-            data = subset(PCi, id %in% pointsToLabel),check_overlap = TRUE)+
+  geom_text(aes(label = id), color = "red", size = 3, fontface = "bold", 
+            data = subset(PCi, id %in% pointsToLabel),check_overlap = F)+
             theme_gray()
            
 head(select(PCi, id, pohlaví), 10)
